@@ -4,7 +4,8 @@
   "description": "Polls world-cup-scores-api and displays to an LED board",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/lpatino10/world-cup-scores-display/issues"
   },
-  "homepage": "https://github.com/lpatino10/world-cup-scores-display#readme"
+  "homepage": "https://github.com/lpatino10/world-cup-scores-display#readme",
+  "dependencies": {
+    "node-fetch": "^2.1.2"
+  }
 }
