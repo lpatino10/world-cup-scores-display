@@ -1,0 +1,19 @@
+{
+  "name": "world-cup-scores-display",
+  "version": "0.0.1",
+  "description": "Polls world-cup-scores-api and displays to an LED board",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lpatino10/world-cup-scores-display.git"
+  },
+  "author": "Logan Patino (loganpatino10@gmail.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lpatino10/world-cup-scores-display/issues"
+  },
+  "homepage": "https://github.com/lpatino10/world-cup-scores-display#readme"
+}
