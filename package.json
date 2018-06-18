@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/lpatino10/world-cup-scores-display#readme",
   "dependencies": {
+    "jimp": "^0.2.28",
     "node-fetch": "^2.1.2"
   }
 }
