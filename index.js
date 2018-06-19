@@ -36,19 +36,31 @@ const countryMap = {
   'Uruguay': 'URU'
 };
 
-// wrap inside polling loop
-/* fetch('https://world-cup-scores.herokuapp.com/')
-  .then(response => response.json())
-  .then(json => {
-    console.log(json);
-
-    // display to LED board
-  }); */
+let savedResults = [];
 
 const generateTextImage = (text, filename, ledRows) => {
   execSync(`python3 generate_image.py "${text}" ${filename} ${ledRows}`);
 };
 
-generateTextImage('COL - 3 JPN - 0', 'test.ppm', 16);
+const displayCurrentResults = () => {
+  fetch('https://world-cup-scores.herokuapp.com/')
+    .then(response => response.json())
+    .then(json => {
+      json.forEach((matchResult, index) => {
+        const homeTeamAbbreviation = countryMap[matchResult.homeTeamName];
+        const homeTeamScore = matchResult.homeTeamScore;
+        const awayTeamAbbreviation = countryMap[matchResult.awayTeamName];
+        const awayTeamScore = matchResult.awayTeamScore;
+        const inputText = `${homeTeamAbbreviation} - ${homeTeamScore} ${awayTeamAbbreviation} - ${awayTeamScore}`;
 
-exec(`sudo ../rpi-rgb-led-matrix/examples-api-use/demo --led-no-hardware-pulse --led-rows=16 --led-brightness=50 -D 1 -m 500 test.ppm`);
+        // display to LED board
+        generateTextImage(inputText, 'score.ppm', 16);
+        execSync(`sudo ../rpi-rgb-led-matrix/examples-api-use/demo -t 9 --led-no-hardware-pulse --led-rows=16 --led-brightness=50 -D 1 -m 500 score.ppm`);
+      })
+    });
+};
+
+displayCurrentResults();
+while (true) {
+  setTimeout(displayCurrentResults, 300000);
+}
