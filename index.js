@@ -57,10 +57,8 @@ const displayCurrentResults = () => {
         generateTextImage(inputText, 'score.ppm', 16);
         execSync(`sudo ../rpi-rgb-led-matrix/examples-api-use/demo -t 9 --led-no-hardware-pulse --led-rows=16 --led-brightness=50 -D 1 -m 500 score.ppm`);
       })
-    });
+    })
+    .catch(err => console.log('Error calling API: ' + err));
 };
 
-displayCurrentResults();
-while (true) {
-  setTimeout(displayCurrentResults, 300000);
-}
+setInterval(displayCurrentResults, 10000);
