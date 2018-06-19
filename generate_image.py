@@ -1,15 +1,20 @@
 import sys
+import textwrap
 from PIL import Image, ImageFont, ImageDraw
 
 def colorRed():
   return (255, 0, 0)
 
 def writeImage(inputString, filename, ledRows):
-  font = ImageFont.truetype('Minecraft.ttf', 28)
-  width, ignore = font.getsize(inputString)
-  im = Image.new('RGB', (width + 30, ledRows), 'black')
+  font = ImageFont.truetype('Minecraft.ttf', 12)
+  im = Image.new('RGB', (58, ledRows), 'black')  
   draw = ImageDraw.Draw(im)
-  draw.text((0, 0), inputString, fill=colorRed())
+  lines = textwrap.wrap(inputString, width=7)
+  y_text = -2 
+  for line in lines: 
+    width, height = font.getsize(line)
+    draw.text((0, y_text), line, fill=colorRed())
+    y_text += height
 
   im.save(filename)
 
