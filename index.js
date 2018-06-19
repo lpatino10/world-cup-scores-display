@@ -61,4 +61,5 @@ const displayCurrentResults = () => {
     .catch(err => console.log('Error calling API: ' + err));
 };
 
+displayCurrentResults();
 setInterval(displayCurrentResults, 10000);
